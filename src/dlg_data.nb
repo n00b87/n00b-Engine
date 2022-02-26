@@ -1,3 +1,0 @@
-NewActor
-guard1
-Animimation0
