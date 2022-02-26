@@ -1,0 +1,7 @@
+RCBASIC_STUDIO:1.0
+PROJECT_NAME:n00b Engine
+PROJECT_MAIN:editor.bas
+AUTHOR:Rodney Cunningham
+WEBSITE:rcbasic.com
+DESCRIPTION:n00b's Game Engine
+SOURCE_REL:editor.bas
