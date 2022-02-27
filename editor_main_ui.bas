@@ -2711,7 +2711,7 @@ End Function
 Function Editor_Main()
 	'Editor_SetLayer(0)
 	
-	While True
+	While WindowExists(main_window)
 		If key(k_escape) Then
 			end
 		End If
