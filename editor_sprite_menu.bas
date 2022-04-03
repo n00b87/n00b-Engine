@@ -71,15 +71,15 @@ Function Editor_NewSprite_Window()
 		If Gui_Button_Clicked(newSprite_cancel_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, "#NULL\n")
+			WriteLine(f, "#NULL")
 			FileClose(f)
 			Exit While
 		ElseIf Gui_Button_Clicked(newSprite_ok_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, Gui_ListBox_GetValue$(newSprite_spriteList_listBox, Gui_ListBox_GetSelectedItem(newSprite_spriteList_listBox)) + "\n")
-			WriteLine(f, Gui_TextField_GetValue$(newSprite_frameWidth_field) + "\n")
-			WriteLine(f, Gui_TextField_GetValue$(newSprite_frameHeight_field) + "\n")
+			WriteLine(f, Gui_ListBox_GetValue$(newSprite_spriteList_listBox, Gui_ListBox_GetSelectedItem(newSprite_spriteList_listBox)))
+			WriteLine(f, Gui_TextField_GetValue$(newSprite_frameWidth_field))
+			WriteLine(f, Gui_TextField_GetValue$(newSprite_frameHeight_field))
 			FileClose(f)
 			Exit While
 		End If
@@ -144,13 +144,13 @@ Function Editor_LoadSprite_Window()
 		If Gui_Button_Clicked(loadSprite_cancel_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, "#NULL\n")
+			WriteLine(f, "#NULL")
 			FileClose(f)
 			Exit While
 		ElseIf Gui_Button_Clicked(loadSprite_ok_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, Gui_ListBox_GetValue$( loadSprite_spriteList_ListBox, Gui_ListBox_GetSelectedItem( loadSprite_spriteList_ListBox ) ) + "\n")
+			WriteLine(f, Gui_ListBox_GetValue$( loadSprite_spriteList_ListBox, Gui_ListBox_GetSelectedItem( loadSprite_spriteList_ListBox ) ))
 			FileClose(f)
 			Exit While
 		End If
@@ -192,13 +192,13 @@ Function Editor_SpriteIsAlreadyLoaded()
 		If Gui_Button_Clicked(cancel_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, "#NULL\n")
+			WriteLine(f, "#NULL")
 			FileClose(f)
 			Exit While
 		ElseIf Gui_Button_Clicked(ok_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, "OK\n")
+			WriteLine(f, "OK")
 			FileClose(f)
 			Exit While
 		End If
@@ -240,13 +240,13 @@ Function Editor_SpriteAlreadyExists()
 		If Gui_Button_Clicked(cancel_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, "#NULL\n")
+			WriteLine(f, "#NULL")
 			FileClose(f)
 			Exit While
 		ElseIf Gui_Button_Clicked(ok_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, "OK\n")
+			WriteLine(f, "OK")
 			FileClose(f)
 			Exit While
 		End If
@@ -288,13 +288,13 @@ Function Editor_SpriteShouldBackUp()
 		If Gui_Button_Clicked(cancel_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, "#NULL\n")
+			WriteLine(f, "#NULL")
 			FileClose(f)
 			Exit While
 		ElseIf Gui_Button_Clicked(ok_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, "OK\n")
+			WriteLine(f, "OK")
 			FileClose(f)
 			Exit While
 		End If
@@ -368,7 +368,7 @@ Function Editor_LoadMultipleSprites_Window()
 		If Gui_Button_Clicked(loadSprite_cancel_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, "#NULL\n")
+			WriteLine(f, "#NULL")
 			FileClose(f)
 			Exit While
 		ElseIf Gui_Button_Clicked(loadSprite_ok_button) Then
@@ -377,10 +377,10 @@ Function Editor_LoadMultipleSprites_Window()
 			If s_count > 0 Then
 				For i = 0 to s_count-1
 					s_value$ = Gui_ListBox_GetValue$(loadSprite_spriteListToLoad_ListBox, i)
-					WriteLine(f, s_value$ + "\n")
+					WriteLine(f, s_value$)
 				Next
 			End If
-			WriteLine(f, "\n")
+			WriteLine(f, "")
 			FileClose(f)
 			Exit While
 		ElseIf Gui_Button_Clicked(loadSprite_add_button) Then

@@ -2606,14 +2606,14 @@ Function Editor_NewActor()
 	f = FreeFile
 	FileOpen(f, "dlg_data.nb", TEXT_OUTPUT)
 	
-	WriteLine(f, Str$(stage_database_count)+"\n")
+	WriteLine(f, Str$(stage_database_count))
 	If stage_database_count > 0 Then
 		For i = 0 to stage_database_count-1
-			WriteLine(f, Sprite_Name$[i]+"\n")
-			WriteLine(f, Str$(Sprite_NumAnimations[i])+"\n")
+			WriteLine(f, Sprite_Name$[i])
+			WriteLine(f, Str$(Sprite_NumAnimations[i]))
 			If Sprite_NumAnimations[i] > 0 Then
 				For anim = 0 to Sprite_NumAnimations[i]-1
-					WriteLine(f, Sprite_Animation_Name$[i, anim]+"\n")
+					WriteLine(f, Sprite_Animation_Name$[i, anim])
 				Next
 			End If
 		Next

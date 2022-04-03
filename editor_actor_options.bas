@@ -121,15 +121,15 @@ Function Editor_NewActor_Window()
 		If Gui_Button_Clicked(newActor_cancel_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, "#NULL\n")
+			WriteLine(f, "#NULL")
 			FileClose(f)
 			Exit While
 		ElseIf Gui_Button_Clicked(newActor_ok_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, Gui_TextField_GetValue$(newActor_actorName_field) + "\n")
-			WriteLine(f, Gui_TextField_GetValue$(newActor_spriteName_field) + "\n")
-			WriteLine(f, Gui_TextField_GetValue$(newActor_spriteAnim_field) + "\n")
+			WriteLine(f, Gui_TextField_GetValue$(newActor_actorName_field))
+			WriteLine(f, Gui_TextField_GetValue$(newActor_spriteName_field))
+			WriteLine(f, Gui_TextField_GetValue$(newActor_spriteAnim_field))
 			FileClose(f)
 			Exit While
 		End If

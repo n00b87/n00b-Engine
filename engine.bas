@@ -23,28 +23,38 @@ Dim SPRITE_PATH$
 Dim TILE_PATH$
 Dim VIDEO_PATH$
 
-If OS = "WINDOWS" Then
-	ACTOR_PATH$ = DIR$ + "\\actor\\"
-	BKG_PATH$ = DIR$ + "\\bkg\\"
-	FONT_PATH$ = DIR$ + "\\font\\"
-	GUI_PATH$ = DIR$ + "\\gui_gfx\\"
-	STAGE_PATH$ = DIR$ + "\\stage\\"
-	MUSIC_PATH$ = DIR$ + "\\music\\"
-	SFX_PATH$ = DIR$ + "\\sfx\\"
-	SPRITE_PATH$ = DIR$ + "\\sprite\\"
-	TILE_PATH$ = DIR$ + "\\tile\\"
-	VIDEO_PATH$ = DIR$ + "\\video\\"
+Dim ENGINE_DIR$
+
+If Trim$(Env("ENGINE_DIR")) <> "" Then
+	ENGINE_DIR$ = Env("ENGINE_DIR")
 Else
-	ACTOR_PATH$ = DIR$ + "/actor/"
-	BKG_PATH$ = DIR$ + "/bkg/"
-	FONT_PATH$ = DIR$ + "/font/"
-	GUI_PATH$ = DIR$ + "/gui_gfx/"
-	STAGE_PATH$ = DIR$ + "/stage/"
-	MUSIC_PATH$ = DIR$ + "/music/"
-	SFX_PATH$ = DIR$ + "/sfx/"
-	SPRITE_PATH$ = DIR$ + "/sprite/"
-	TILE_PATH$ = DIR$ + "/tile/"
-	VIDEO_PATH$ = DIR$ + "/video/"
+	ENGINE_DIR$ = Dir$
+End If
+
+Print ENGINE_DIR$
+
+If OS = "WINDOWS" Then
+	ACTOR_PATH$ = ENGINE_DIR$ + "\\actor\\"
+	BKG_PATH$ = ENGINE_DIR$ + "\\bkg\\"
+	FONT_PATH$ = ENGINE_DIR$ + "\\font\\"
+	GUI_PATH$ = ENGINE_DIR$ + "\\gui_gfx\\"
+	STAGE_PATH$ = ENGINE_DIR$ + "\\stage\\"
+	MUSIC_PATH$ = ENGINE_DIR$ + "\\music\\"
+	SFX_PATH$ = ENGINE_DIR$ + "\\sfx\\"
+	SPRITE_PATH$ = ENGINE_DIR$ + "\\sprite\\"
+	TILE_PATH$ = ENGINE_DIR$ + "\\tile\\"
+	VIDEO_PATH$ = ENGINE_DIR$ + "\\video\\"
+Else
+	ACTOR_PATH$ = ENGINE_DIR$ + "/actor/"
+	BKG_PATH$ = ENGINE_DIR$ + "/bkg/"
+	FONT_PATH$ = ENGINE_DIR$ + "/font/"
+	GUI_PATH$ = ENGINE_DIR$ + "/gui_gfx/"
+	STAGE_PATH$ = ENGINE_DIR$ + "/stage/"
+	MUSIC_PATH$ = ENGINE_DIR$ + "/music/"
+	SFX_PATH$ = ENGINE_DIR$ + "/sfx/"
+	SPRITE_PATH$ = ENGINE_DIR$ + "/sprite/"
+	TILE_PATH$ = ENGINE_DIR$ + "/tile/"
+	VIDEO_PATH$ = ENGINE_DIR$ + "/video/"
 End If
 
 MAX_IMAGES = 1024
@@ -397,8 +407,8 @@ Function SaveActor(actor)
 	spr = Actor_Sprite[actor]
 	
 	FileOpen(f, ACTOR_PATH$ + a_file$, TEXT_OUTPUT)
-	WriteLine(f, Sprite_Name$[spr] + "\n")
-	WriteLine(f, Str$(Actor_CurrentAnimation[spr]) + "\n")
+	WriteLine(f, Sprite_Name$[spr])
+	WriteLine(f, Str$(Actor_CurrentAnimation[spr]))
 	FileClose(f)
 	
 End Function

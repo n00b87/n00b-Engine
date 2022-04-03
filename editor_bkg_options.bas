@@ -56,13 +56,13 @@ Function Editor_Bkg_LoadImage_Window()
 		If Gui_Button_Clicked(loadBkg_cancel_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, "#NULL\n")
+			WriteLine(f, "#NULL")
 			FileClose(f)
 			Exit While
 		ElseIf Gui_Button_Clicked(loadBkg_load_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, Gui_ListBox_GetValue$( loadBkg_imageList_ListBox, Gui_ListBox_GetSelectedItem( loadBkg_imageList_ListBox ) ) + "\n")
+			WriteLine(f, Gui_ListBox_GetValue$( loadBkg_imageList_ListBox, Gui_ListBox_GetSelectedItem( loadBkg_imageList_ListBox ) ))
 			FileClose(f)
 			Exit While
 		End If
@@ -122,15 +122,15 @@ Function Editor_Bkg_SetColor_Window(r, g, b)
 		If Gui_Button_Clicked(setColor_cancel_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, "#NULL\n")
+			WriteLine(f, "#NULL")
 			FileClose(f)
 			Exit While
 		ElseIf Gui_Button_Clicked(setColor_ok_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, Str$(r) + "\n")
-			WriteLine(f, Str$(g) + "\n")
-			WriteLine(f, Str$(b) + "\n")
+			WriteLine(f, Str$(r))
+			WriteLine(f, Str$(g))
+			WriteLine(f, Str$(b))
 			FileClose(f)
 			Exit While
 		ElseIf Gui_TextField_Return(setColor_R_field) Or Gui_TextField_Return(setColor_G_field) Or Gui_TextField_Return(setColor_B_field) Then
@@ -288,24 +288,24 @@ Function Editor_Bkg_Properties_Window(b_type, b_flag, b_alpha, b_zx, b_zy, b_ang
 		If Gui_Button_Clicked(bkg_properties_cancel_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, "#NULL\n")
+			WriteLine(f, "#NULL")
 			FileClose(f)
 			Exit While
 		ElseIf Gui_Button_Clicked(bkg_properties_ok_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, Str$(Gui_DropDown_GetSelectedItem(bkg_properties_type_selection)) + "\n")
-			WriteLine(f, Str$(Gui_DropDown_GetSelectedItem(bkg_properties_flag_selection)) + "\n")
-			WriteLine(f, Gui_TextField_GetValue$(bkg_properties_alpha_field) + "\n")
-			WriteLine(f, Gui_TextField_GetValue$(bkg_properties_zoomX_field) + "\n")
-			WriteLine(f, Gui_TextField_GetValue$(bkg_properties_zoomY_field) + "\n")
-			WriteLine(f, Gui_TextField_GetValue$(bkg_properties_angle_field) + "\n")
-			WriteLine(f, Gui_TextField_GetValue$(bkg_properties_blitX_field) + "\n")
-			WriteLine(f, Gui_TextField_GetValue$(bkg_properties_blitY_field) + "\n")
-			WriteLine(f, Gui_TextField_GetValue$(bkg_properties_blitW_field) + "\n")
-			WriteLine(f, Gui_TextField_GetValue$(bkg_properties_blitH_field) + "\n")
-			WriteLine(f, Gui_TextField_GetValue$(bkg_properties_hspeed_field) + "\n")
-			WriteLine(f, Gui_TextField_GetValue$(bkg_properties_vspeed_field) + "\n")
+			WriteLine(f, Str$(Gui_DropDown_GetSelectedItem(bkg_properties_type_selection)))
+			WriteLine(f, Str$(Gui_DropDown_GetSelectedItem(bkg_properties_flag_selection)))
+			WriteLine(f, Gui_TextField_GetValue$(bkg_properties_alpha_field))
+			WriteLine(f, Gui_TextField_GetValue$(bkg_properties_zoomX_field))
+			WriteLine(f, Gui_TextField_GetValue$(bkg_properties_zoomY_field))
+			WriteLine(f, Gui_TextField_GetValue$(bkg_properties_angle_field))
+			WriteLine(f, Gui_TextField_GetValue$(bkg_properties_blitX_field))
+			WriteLine(f, Gui_TextField_GetValue$(bkg_properties_blitY_field))
+			WriteLine(f, Gui_TextField_GetValue$(bkg_properties_blitW_field))
+			WriteLine(f, Gui_TextField_GetValue$(bkg_properties_blitH_field))
+			WriteLine(f, Gui_TextField_GetValue$(bkg_properties_hspeed_field))
+			WriteLine(f, Gui_TextField_GetValue$(bkg_properties_vspeed_field))
 			FileClose(f)
 			Exit While
 		End If

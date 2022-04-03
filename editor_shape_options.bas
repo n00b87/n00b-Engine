@@ -66,11 +66,11 @@ Function Editor_AddShape_Window()
 		ElseIf Gui_Button_Clicked(addShape_ok_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, DropDown_Value$[Gui_DropDown_GetSelectedItem(addShape_type_selection)] + "\n")
-			WriteLine(f, Gui_TextField_GetValue$(addShape_posX_field) + "\n")
-			WriteLine(f, Gui_TextField_GetValue$(addShape_posY_field) + "\n")
-			WriteLine(f, Gui_TextField_GetValue$(addShape_par1_field) + "\n")
-			WriteLine(f, Gui_TextField_GetValue$(addShape_par2_field) + "\n")
+			WriteLine(f, DropDown_Value$[Gui_DropDown_GetSelectedItem(addShape_type_selection)])
+			WriteLine(f, Gui_TextField_GetValue$(addShape_posX_field))
+			WriteLine(f, Gui_TextField_GetValue$(addShape_posY_field))
+			WriteLine(f, Gui_TextField_GetValue$(addShape_par1_field))
+			WriteLine(f, Gui_TextField_GetValue$(addShape_par2_field))
 			FileClose(f)
 			Exit While
 		End If

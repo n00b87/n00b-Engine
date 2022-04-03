@@ -55,13 +55,13 @@ Function Editor_LoadTileset_Window()
 		If Gui_Button_Clicked(loadTileset_cancel_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, "#NULL\n")
+			WriteLine(f, "#NULL")
 			FileClose(f)
 			Exit While
 		ElseIf Gui_Button_Clicked(loadTileset_load_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, Gui_ListBox_GetValue$( loadTileset_tsetList_ListBox, Gui_ListBox_GetSelectedItem( loadTileset_tsetList_ListBox ) ) + "\n")
+			WriteLine(f, Gui_ListBox_GetValue$( loadTileset_tsetList_ListBox, Gui_ListBox_GetSelectedItem( loadTileset_tsetList_ListBox ) ))
 			FileClose(f)
 			Exit While
 		End If

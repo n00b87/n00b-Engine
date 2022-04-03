@@ -56,20 +56,21 @@ Function Editor_NewStage_Window()
 	Gui_TextField_SetValue(newStage_tileHeight_field, "32")
 	
 	While True
-		If Gui_Button_Clicked(newStage_cancel_button) Then
+		
+		If Gui_Button_Clicked(newStage_ok_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, "#NULL\n")
+			WriteLine(f, Gui_TextField_GetValue$(newStage_stageName_field))
+			WriteLine(f, Gui_TextField_GetValue$(newStage_stageWidth_field))
+			WriteLine(f, Gui_TextField_GetValue$(newStage_stageHeight_field))
+			WriteLine(f, Gui_TextField_GetValue$(newStage_tileWidth_field))
+			WriteLine(f, Gui_TextField_GetValue$(newStage_tileHeight_field))
 			FileClose(f)
 			Exit While
-		ElseIf Gui_Button_Clicked(newStage_ok_button) Then
+		ElseIf Gui_Button_Clicked(newStage_cancel_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, Gui_TextField_GetValue$(newStage_stageName_field) + "\n")
-			WriteLine(f, Gui_TextField_GetValue$(newStage_stageWidth_field) + "\n")
-			WriteLine(f, Gui_TextField_GetValue$(newStage_stageHeight_field) + "\n")
-			WriteLine(f, Gui_TextField_GetValue$(newStage_tileWidth_field) + "\n")
-			WriteLine(f, Gui_TextField_GetValue$(newStage_tileHeight_field) + "\n")
+			WriteLine(f, "#NULL")
 			FileClose(f)
 			Exit While
 		End If
@@ -134,13 +135,13 @@ Function Editor_LoadStage_Window()
 		If Gui_Button_Clicked(loadStage_cancel_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, "#NULL\n")
+			WriteLine(f, "#NULL")
 			FileClose(f)
 			Exit While
 		ElseIf Gui_Button_Clicked(loadStage_ok_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, Gui_ListBox_GetValue$( loadStage_stageList_ListBox, Gui_ListBox_GetSelectedItem( loadStage_stageList_ListBox ) ) + ".stage\n")
+			WriteLine(f, Gui_ListBox_GetValue$( loadStage_stageList_ListBox, Gui_ListBox_GetSelectedItem( loadStage_stageList_ListBox ) ) + ".stage")
 			FileClose(f)
 			Exit While
 		End If
@@ -181,13 +182,13 @@ Function Editor_SaveStage_Window(s_name$)
 		If Gui_Button_Clicked(saveStage_cancel_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, "#NULL\n")
+			WriteLine(f, "#NULL")
 			FileClose(f)
 			Exit While
 		ElseIf Gui_Button_Clicked(saveStage_ok_button) Then
 			f = FreeFile
 			FileOpen(f, "dlg_data.nb", TEXT_OUTPUT_PLUS)
-			WriteLine(f, Gui_TextField_GetValue$(saveStage_stageName_field) + ".stage\n")
+			WriteLine(f, Gui_TextField_GetValue$(saveStage_stageName_field) + ".stage")
 			FileClose(f)
 			Exit While
 		End If
