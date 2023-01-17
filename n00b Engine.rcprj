@@ -30,4 +30,3 @@ SOURCE_REL:strings.bas
 SOURCE_REL:simple_touch.bas
 SOURCE_REL:game_engine.bas
 ENV:ENGINE_INIT=1
-ENV:ENGINE_DIR=C:\Users\omega\Desktop\Game_Dev\Graizor

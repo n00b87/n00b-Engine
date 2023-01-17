@@ -1,3 +1,5 @@
+Include once
+
 Include "strings.bas"
 Include "math_util.bas"
 Include "joystick.bas"
