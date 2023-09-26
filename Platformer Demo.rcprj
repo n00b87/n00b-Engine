@@ -1,0 +1,8 @@
+RCBASIC_STUDIO:1.0
+PROJECT_NAME:Platform Game Demo
+PROJECT_MAIN:main.bas
+AUTHOR:
+WEBSITE:rcbasic.com
+DESCRIPTION:Game Project Template
+SOURCE_REL:main.bas
+SOURCE_REL:engine.bas

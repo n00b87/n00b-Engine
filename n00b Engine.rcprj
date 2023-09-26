@@ -29,4 +29,3 @@ SOURCE_REL:spriteMain_ui.bas
 SOURCE_REL:strings.bas
 SOURCE_REL:simple_touch.bas
 SOURCE_REL:game_engine.bas
-ENV:ENGINE_INIT=1

@@ -29,6 +29,7 @@ Dim ENGINE_DIR$
 
 If Trim$(Env("ENGINE_DIR")) <> "" Then
 	ENGINE_DIR$ = Env("ENGINE_DIR")
+	Print "ENG DIR: "; ENGINE_DIR$
 Else
 	ENGINE_DIR$ = Dir$
 End If
@@ -229,6 +230,19 @@ Dim Actor_Weight[MAX_ACTORS]
 Dim Actor_DynaRect_SpeedAdjust[MAX_ACTORS,2]
 Dim Actor_Contact_Shape[MAX_ACTORS]
 
+Dim EFFECT_NONE
+Dim EFFECT_FLASH
+EFFECT_NONE = 0
+EFFECT_FLASH = 1
+
+Dim Actor_Effect_Active[MAX_ACTORS]
+Dim Actor_Effect_Type[MAX_ACTORS]
+Dim Actor_Effect_Timer[MAX_ACTORS]
+Dim Actor_Effect_Time[MAX_ACTORS] 'Total time for one iteration of the effect
+Dim Actor_Effect_Value[MAX_ACTORS]
+Dim Actor_Effect_Increment[MAX_ACTORS]
+
+
 Dim PHYSICS_STATE_GROUND
 Dim PHYSICS_STATE_RISE
 Dim PHYSICS_STATE_FALL
@@ -248,6 +262,7 @@ Dim Actor_CurrentFrameTime[MAX_ACTORS]
 Dim Actor_CurrentFrameDelay[MAX_ACTORS]
 Dim Actor_AnimationSync[MAX_ACTORS]
 Dim Actor_AnimationParent[MAX_ACTORS]
+Dim Actor_AnimationEnded[MAX_ACTORS]
 
 'Dynamic Rect
 Dim Actor_Shape[MAX_ACTORS]
@@ -383,6 +398,7 @@ Function NewActor(a_name$, spr)
 	Actor_ZY[a_index] = 1
 	Actor_Angle[a_index] = 0
 	Actor_CurrentAnimation[a_index] = 0
+	Actor_CurrentFrame[a_index] = 0
 	Actor_Visible[a_index] = true
 	Actor_Active[a_index] = true
 	Actor_AnimationSync[a_index] = false
@@ -390,6 +406,19 @@ Function NewActor(a_name$, spr)
 	Actor_Shape[a_index] = -1
 	Actor_OffsetActor[a_index, 0] = -1
 	Actor_Collision[a_index] = true
+	Actor_Effect_Type[a_index] = 0
+	Actor_Physics[a_index] = 0
+	Actor_AnimationEnded[a_index] = 0
+	Actor_Angle[a_index] = 0
+	Actor_AnimationSync[a_index] = 0
+	Actor_ChildActor[a_index] = -1
+	Actor_NumActorCollisions[a_index] = 0
+	Actor_NumStageCollisions[a_index] = 0
+	Actor_Weight[a_index] = 0
+	Actor_ParentActor[a_index] = -1
+	Actor_Persistent[a_index] = 0
+	Actor_CurrentFrameDelay[a_index] = 0
+	Actor_CurrentFrameTime[a_index] = 0
 	Return a_index
 End Function
 
@@ -560,6 +589,7 @@ Function Actor_SetAnimationByName(actor, a_name$)
 	sprite = Actor_Sprite[actor]
 	Actor_CurrentFrameDelay[actor] = 1000 / Max(1, Sprite_Animation_FPS[sprite, anim])
 	Actor_CurrentFrameTime[actor] = Timer
+	Actor_AnimationEnded[actor]
 	Return True
 End Function
 
@@ -1340,17 +1370,17 @@ Sub Actor_EnableCollisions(actor, flag)
 	Actor_Collision[actor] = flag
 End Sub
 
-Dim EFFECT_NONE
-Dim EFFECT_FLASH
-EFFECT_NONE = 0
-EFFECT_FLASH = 1
+'Dim EFFECT_NONE
+'Dim EFFECT_FLASH
+'EFFECT_NONE = 0
+'EFFECT_FLASH = 1
 
-Dim Actor_Effect_Active[MAX_ACTORS]
-Dim Actor_Effect_Type[MAX_ACTORS]
-Dim Actor_Effect_Timer[MAX_ACTORS]
-Dim Actor_Effect_Time[MAX_ACTORS] 'Total time for one iteration of the effect
-Dim Actor_Effect_Value[MAX_ACTORS]
-Dim Actor_Effect_Increment[MAX_ACTORS]
+'Dim Actor_Effect_Active[MAX_ACTORS]
+'Dim Actor_Effect_Type[MAX_ACTORS]
+'Dim Actor_Effect_Timer[MAX_ACTORS]
+'Dim Actor_Effect_Time[MAX_ACTORS] 'Total time for one iteration of the effect
+'Dim Actor_Effect_Value[MAX_ACTORS]
+'Dim Actor_Effect_Increment[MAX_ACTORS]
 
 Sub Actor_SetEffect(actor, effect_type, effect_time)
 	If effect_type = EFFECT_NONE Then
@@ -2940,7 +2970,7 @@ Sub Actor_Force(actor, fx, fy)
 	'Actor_Physics_State[0] = PHYSICS_STATE_RISE
 End Sub
 
-Dim Actor_AnimationEnded[MAX_ACTORS]
+'Dim Actor_AnimationEnded[MAX_ACTORS]
 
 Sub Stage_DrawActor(actor)
 	Actor_AnimationEnded[actor] = False
@@ -2979,7 +3009,7 @@ Sub Stage_DrawActor(actor)
 			'	print "dbg2:";Actor_CurrentFrame[actor]
 			'End If
 			
-			If Actor_CurrentFrame[actor]+1 < Sprite_Animation_NumFrames[sprite, anim] Then
+			If (Actor_CurrentFrame[actor]+1) < Sprite_Animation_NumFrames[sprite, anim] Then
 				'Actor_CurrentFrame[actor] = Actor_CurrentFrame[actor] + 1
 				new_frame = Actor_CurrentFrame[actor] + 1
 			Else
@@ -3197,7 +3227,9 @@ Sub Stage_DrawActor(actor)
 						alpha_value = 160
 					End If
 					'print "DEBUG:  Effect_Time=";Actor_Effect_Time[actor];"  Effect_Value=";Actor_Effect_Value[actor];"   Effect_Increment=";Actor_Effect_Increment[actor]
-					SetImageAlpha(img, alpha_value)
+					If ImageExists(img) Then
+						SetImageAlpha(img, alpha_value)
+					End If
 				End If
 			Default
 				'Do nothing
@@ -3370,14 +3402,14 @@ Function Game_Render()
 	'SetColor(RGB(255,255,255))
 	'DrawText("FPS: " + Str(FPS), 10, 10)
 	
-	/'
+	'/'
 	If OS$ = "ANDROID" Or OS$ = "IOS" Then
 		For i = 0 to 7
 			touch_button[i] = 20 + (i*touch_button_size) + (i*4)
 			DrawImage_Blit(MOBILE_BUTTONS_IMAGE, touch_button[i], touch_button_y, i * touch_button_size, 0, touch_button_size, touch_button_size)
 		Next
 	End If
-	'/
+	''/
 	Update
 	Wait(0)
 End Function

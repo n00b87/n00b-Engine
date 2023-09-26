@@ -9,6 +9,7 @@ Include "editor_shape_options.bas"
 Include "editor_sprite_menu.bas"
 Include "editor_actor_options.bas"
 
+
 If NumCommands > 1 Then
 	Select Case Command$(1)
 	Case "top_menu_newButton"

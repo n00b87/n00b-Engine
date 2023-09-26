@@ -2587,7 +2587,7 @@ Function Gui_Update()
 		Canvas(GUI_TMP_CANVAS)
 	End If
 	
-	Update
+	UpdateAllWindows()
 	Return True
 End Function
 
