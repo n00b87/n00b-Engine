@@ -377,6 +377,16 @@ Function GetFreeImage()
 	Return -1
 End Function
 
+'Manage Fonts
+Function GetFreeFont()
+	For i = 0 to 31
+		If Not FontIsLoaded(i) Then
+			Return i
+		End If
+	Next
+	Return -1
+End Function
+
 'ACTOR FUNCTIONS
 Function NewActor(a_name$, spr)
 	a_index = -1
